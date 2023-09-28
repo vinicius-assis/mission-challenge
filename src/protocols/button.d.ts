@@ -4,4 +4,5 @@ interface IButton  {
   style?: React.CSSProperties
   disabled?: boolean
   variant?: 'success' | 'danger' | 'info'
+  to?: string
 }
