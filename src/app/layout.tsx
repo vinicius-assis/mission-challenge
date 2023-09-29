@@ -17,7 +17,7 @@ export default function RootLayout({
       <body>
         <HeaderWrapper>
           {pathName !== '/register' && <Button to="/register" content="Cadastrar Produto" />}
-          {pathName !== '/' && <Button to="/" content="Lista" />}
+          {pathName !== '/' && <Button to="/" content="Lista de Produtos" />}
           {pathName !== '/cart' && <Button to="/cart" content="Carrinho" />}
         </HeaderWrapper>
         {children}
