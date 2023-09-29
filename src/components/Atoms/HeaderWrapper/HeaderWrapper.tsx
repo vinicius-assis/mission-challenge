@@ -1,4 +1,4 @@
-const INITIAL_STYLE = 'flex justify-between p-3'
+const INITIAL_STYLE = 'flex justify-between p-5'
 
 const HeaderWrapper: React.FC<IHeaderWrapper> = ({ children, className = INITIAL_STYLE }) => {
   return (
