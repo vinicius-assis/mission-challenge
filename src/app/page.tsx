@@ -1,13 +1,12 @@
 import Button from "@/components/Atoms/Button/Button";
 import HeaderWrapper from "@/components/Atoms/HeaderWrapper/HeaderWrapper";
+import ProductList from "@/components/Organisms/ProductList/ProductList";
+import { productItems } from "../../mock/productItems";
 
 export default function Home() {
   return (
     <main>
-      <HeaderWrapper>
-        <Button className="py-1 px-3 rounded-sm bg-blue-500" content="Listar Produtos" />
-        <Button className="py-1 px-3 rounded-sm bg-blue-500" content="+ Adicionar" />
-      </HeaderWrapper>
+      <ProductList data={productItems} />
     </main>
   )
 }
