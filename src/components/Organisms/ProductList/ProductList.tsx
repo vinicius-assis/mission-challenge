@@ -11,8 +11,8 @@ const ProductList = ({ data }: IProductList) => {
     
   return (
     <ul className="p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
-      {data?.map((product: IProductData, index: number) => {
-        const { id, productName, price } = product
+      {data?.map((item: IProductData, index: number) => {
+        const { id, product: productName, price } = item
         const lastItem = data?.length === index + 1
         return (
           <ProductItem

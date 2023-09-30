@@ -4,6 +4,6 @@ interface IProductList {
 
 interface IProductData {
   id: string
-  productName: string
+  product: string
   price: number
 }

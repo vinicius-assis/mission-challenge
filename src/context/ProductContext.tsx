@@ -21,10 +21,9 @@ const productReducer = (state: any, action: any) => {
 export const ProductContext = createContext<any>(INITIAL_STATE)
 
 export const ProductProvider: React.FC<IProvider> = ({ children }) => {
-  const [state, dispatch] = useReducer(productReducer, INITIAL_STATE)
-
+  const [products, dispatch] = useReducer(productReducer, INITIAL_STATE)
   return (
-    <ProductContext.Provider value={{ state, dispatch }}>
+    <ProductContext.Provider value={{ products, dispatch }}>
       {children}
     </ProductContext.Provider>
   )
