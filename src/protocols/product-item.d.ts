@@ -4,4 +4,5 @@ interface IProductItem {
   className?: string
   quantity?: number
   hiddenRemoveButton?: boolean
+  handleAddProduct?: () => void
 }

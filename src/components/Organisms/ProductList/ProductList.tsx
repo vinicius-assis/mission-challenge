@@ -1,11 +1,18 @@
+import { useContext } from "react"
+import { CartContext } from "@/context/CartContext"
+
 import EmptyListMessage from "@/components/Atoms/EmptyListMessage/EmptyListMessage"
 import ProductItem from "@/components/Molecules/ProductItem/ProductItem"
 
 const ProductList = ({ data }: IProductList) => {
+  const { dispatch } = useContext(CartContext)
 
-  if (!data?.length) {
+  const handleAddProduct = (item: IProductData) => dispatch({ type: 'ADD_CART', payload: item })
+
+if (!data?.length) {
     return <EmptyListMessage content="Nenhum item cadastrado." />
   }
+
     
   return (
     <ul className="p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
@@ -17,6 +24,7 @@ const ProductList = ({ data }: IProductList) => {
             key={id}
             title={productName}
             price={price}
+            handleAddProduct={() => handleAddProduct(item)}
             hiddenRemoveButton
             {...(!lastItem ? { className: 'border-b-2 border-solid border-slate-500' } : {})}
             />

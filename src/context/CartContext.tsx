@@ -6,12 +6,20 @@ interface IProvider {
 
 const INITIAL_STATE: any = []
 
-const productReducer = (state: any, action: any) => {
+const productReducer = (state: Array<any>, action: any) => {
   switch (action.type) {
-    case 'REGISTER_CART':
+    case 'ADD_CART':
+      const currentId = action?.payload?.id
+      const duplicatedIndex = state.findIndex(({ id }) => id === currentId)
+      console.log(duplicatedIndex)
+      if (duplicatedIndex >= 0) {
+        state[duplicatedIndex].quantity++
+        console.log(state)
+        return state
+      }
       return [
         ...state,
-        ...action.payload
+        action.payload
       ]
     default:
       return state
@@ -21,9 +29,10 @@ const productReducer = (state: any, action: any) => {
 export const CartContext = createContext<any>(INITIAL_STATE)
 
 export const CartProvider: React.FC<IProvider> = ({ children }) => {
-  const [cart, dispatch] = useReducer(productReducer, INITIAL_STATE)
+  const [state, dispatch] = useReducer(productReducer, INITIAL_STATE)
+  const totalItems = state?.length
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
+    <CartContext.Provider value={{ state, dispatch, totalItems }}>
       {children}
     </CartContext.Provider>
   )
