@@ -26,7 +26,7 @@ const ProductForm = () => {
     setProducts((oldValue: any) => [...oldValue, DEFAULT_FIELD])
   }
 
-  const handleRemoveProductField = (event: React.MouseEvent<HTMLElement>, itemIndex: number) =>  {
+  const handleRemoveProductField = (itemIndex: number) => (event: React.MouseEvent<HTMLElement>) =>  {
     event.preventDefault()
     setProducts((oldValue: any) => {
       const filteredValues = oldValue.filter((_: unknown, index: number) => index !== itemIndex)
@@ -34,7 +34,7 @@ const ProductForm = () => {
     })
   }
 
-  const handleUpdateName = (index: number) => (field: 'name' | 'price', value: string) => {
+  const handleUpdateFieldValue = (index: number) => (field: 'name' | 'price', value: string) => {
     const newProducts = [...products]
     newProducts[index] = {
       ...products[index],
@@ -76,12 +76,10 @@ const ProductForm = () => {
       {products?.map((_, index: number, array) => (
         <ProductInput
           key={index}
-          index={index}
           addProductField={handleAddProductField}
-          removeField={handleRemoveProductField}
-          updateProducts={setProducts}
+          removeField={handleRemoveProductField(index)}
           disabledRemove={array.length === 1}
-          handleChange={handleUpdateName(index)}
+          handleChange={handleUpdateFieldValue(index)}
         />
       ))}
       <div className="flex justify-end">
