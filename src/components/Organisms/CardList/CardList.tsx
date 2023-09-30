@@ -1,18 +1,16 @@
+import EmptyListMessage from "@/components/Atoms/EmptyListMessage/EmptyListMessage"
 import ProductItem from "@/components/Molecules/ProductItem/ProductItem"
 
 const CardList = ({ data }: ICartList) => {
 
   if (!data?.length) {
-    return (
-      <div className="flex justify-center mt-5 p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
-        <h2>Nenhum item no carrinho.</h2>
-      </div>)
+    return <EmptyListMessage content="Carrinho vazio." />
   }
     
   return (
     <ul className="p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
       {data?.map((product: IProductData, index: number) => {
-        const { id, productName, price } = product
+        const { id, product: productName, price } = product
         const lastItem = data?.length === index + 1
         return (
           <ProductItem
