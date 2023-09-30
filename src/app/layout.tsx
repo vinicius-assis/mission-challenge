@@ -1,4 +1,4 @@
-import BaseTemplate from '@/components/Templates/BaseTemplate/BaseTemplate'
+import ProvidersTemplate from '@/components/Templates/ProvidersTemplate/ProvidersTemplate'
 import './globals.css'
 
 export default function RootLayout({
@@ -9,9 +9,9 @@ export default function RootLayout({
 return (
     <html lang="pt-BR">
       <body>
-        <BaseTemplate>
+        <ProvidersTemplate>
           {children}
-        </BaseTemplate>
+        </ProvidersTemplate>
       </body>
     </html>
   )
