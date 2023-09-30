@@ -19,7 +19,10 @@ const productReducer = (state: Array<any>, action: any) => {
       }
       return [
         ...state,
-        action.payload
+        {
+          ...action.payload,
+          quantity: 1
+        }
       ]
     default:
       return state
@@ -29,10 +32,10 @@ const productReducer = (state: Array<any>, action: any) => {
 export const CartContext = createContext<any>(INITIAL_STATE)
 
 export const CartProvider: React.FC<IProvider> = ({ children }) => {
-  const [state, dispatch] = useReducer(productReducer, INITIAL_STATE)
-  const totalItems = state?.length
+  const [cartItems, dispatch] = useReducer(productReducer, INITIAL_STATE)
+  const totalItems = cartItems?.length
   return (
-    <CartContext.Provider value={{ state, dispatch, totalItems }}>
+    <CartContext.Provider value={{ cartItems, dispatch, totalItems }}>
       {children}
     </CartContext.Provider>
   )

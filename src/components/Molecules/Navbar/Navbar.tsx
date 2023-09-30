@@ -9,7 +9,6 @@ import { useContext } from "react"
 const Navbar = () => {
   const pathName = usePathname()
   const { totalItems } = useContext(CartContext)
-  console.log('totalItems', totalItems)
 
   return (
     <HeaderWrapper>
