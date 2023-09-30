@@ -5,4 +5,6 @@ interface IButton  {
   disabled?: boolean
   variant?: 'success' | 'danger' | 'info'
   to?: string
+  type?: 'button' | 'submit' | 'reset'
+  onClick?: React.MouseEventHandler<HTMLElement>
 }
