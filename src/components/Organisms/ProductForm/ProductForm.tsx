@@ -7,13 +7,12 @@ import ProductInput from "@/components/Molecules/ProductInput/ProductInput"
 import { ProductContext } from "@/context/ProductContext"
 
 const DEFAULT_FIELD = {
-  id: uuid(),
   product: '',
   price: ''
 }
 
 const ProductForm = () => {
-  const [products, setProducts] = useState([DEFAULT_FIELD])
+  const [products, setProducts] = useState([{ id: uuid(), ...DEFAULT_FIELD}])
   const { dispatch } = useContext(ProductContext)
 
   const [registerLoading, setRegisterLoading] = useState(false)
@@ -23,7 +22,7 @@ const ProductForm = () => {
 
   const handleAddProductField = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault()
-    setProducts((oldValue: any) => [...oldValue, DEFAULT_FIELD])
+    setProducts((oldValue: any) => [...oldValue, { id: uuid(), ...DEFAULT_FIELD}])
   }
 
   const handleRemoveProductField = (itemIndex: number) => (event: React.MouseEvent<HTMLElement>) =>  {
