@@ -1,4 +1,4 @@
 interface IProductControl {
-  price: string
+  price: number
   disabledRemove?: boolean
 }

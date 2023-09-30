@@ -1,5 +1,6 @@
 interface IProductItem {
   title: string
-  price: string
+  price: number
   className?: string
+  quantity?: number
 }
