@@ -6,4 +6,5 @@ interface IProductData {
   id: string
   product: string
   price: number
+  quantity?: number
 }

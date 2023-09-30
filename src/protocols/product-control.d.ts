@@ -3,4 +3,5 @@ interface IProductControl {
   disabledRemove?: boolean
   hiddenRemoveButton?: boolean
   handleAddProduct?: () => void
+  handleDescreaseProduct?: () => void
 }

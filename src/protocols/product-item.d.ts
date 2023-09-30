@@ -5,4 +5,5 @@ interface IProductItem {
   quantity?: number
   hiddenRemoveButton?: boolean
   handleAddProduct?: () => void
+  handleDescreaseProduct?: () => void
 }

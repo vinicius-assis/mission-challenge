@@ -1,6 +1,15 @@
+import { memo } from "react"
 import ProductControl from "../ProductControl/ProductControl"
 
-const ProductItem = ({ title, price, quantity,  className, hiddenRemoveButton, handleAddProduct }:IProductItem) => {
+const ProductItem = ({
+  title,
+  price,
+  quantity,
+  className,
+  hiddenRemoveButton,
+  handleAddProduct,
+  handleDescreaseProduct
+}:IProductItem) => {
   const itemPrice = (quantity ? (Number(price) * quantity).toFixed(2) : price) as number
   return (
     <li className={`flex justify-between py-2 ${className}`}>
@@ -12,9 +21,10 @@ const ProductItem = ({ title, price, quantity,  className, hiddenRemoveButton, h
           price={itemPrice}
           hiddenRemoveButton={hiddenRemoveButton}
           handleAddProduct={handleAddProduct}
+          handleDescreaseProduct={handleDescreaseProduct}
         />
     </li>
   )
 }
 
-export default ProductItem
+export default memo(ProductItem)
