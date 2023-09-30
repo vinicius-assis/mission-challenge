@@ -1,11 +1,14 @@
-import Button from "@/components/Atoms/Button/Button"
 import ProductControl from "../ProductControl/ProductControl"
 
-const ProductItem = ({ title, price, className }:IProductItem) => {
+const ProductItem = ({ title, price, quantity,  className }:IProductItem) => {
+  const itemPrice = (quantity ? (Number(price) * quantity).toFixed(2) : price) as number
   return (
     <li className={`flex justify-between py-2 ${className}`}>
-      <h4 className="text-base font-semibold">{title}</h4>
-      <ProductControl price={price} />
+      <div className="flex">
+        {!!quantity && <p className="mr-2 italic">{quantity}x</p>}
+        <h4 className="text-base font-semibold">{title}</h4>
+      </div>
+        <ProductControl price={itemPrice} />
     </li>
   )
 }
