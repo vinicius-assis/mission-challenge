@@ -19,6 +19,7 @@ const ProductList = ({ data }: IProductList) => {
             key={id}
             title={productName}
             price={price}
+            hiddenRemoveButton
             {...(!lastItem ? { className: 'border-b-2 border-solid border-slate-500' } : {})}
             />
         )}

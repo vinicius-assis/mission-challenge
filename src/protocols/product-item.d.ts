@@ -3,4 +3,5 @@ interface IProductItem {
   price: number
   className?: string
   quantity?: number
+  hiddenRemoveButton?: boolean
 }
