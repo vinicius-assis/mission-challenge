@@ -1,12 +1,10 @@
-import Button from "@/components/Atoms/Button/Button";
-import HeaderWrapper from "@/components/Atoms/HeaderWrapper/HeaderWrapper";
 import ProductList from "@/components/Organisms/ProductList/ProductList";
-import { cartItems } from "../../../mock/cartItems";
+import { productItems } from "../../../mock/productItems";
 
 export default function Register() {
   return (
     <main>
-      <ProductList data={cartItems} />
+      <ProductList data={productItems} />
     </main>
   )
 }
