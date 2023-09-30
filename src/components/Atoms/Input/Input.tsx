@@ -1,7 +1,7 @@
 const Input = ({ name, label, placeholder = 'Insira o nome do Produto', currencySign }: IInput) => {
 
   return (
-    <div>
+    <div className="w-full">
       <label htmlFor={name} className="block text-sm font-medium leading-6 text-white">{label}</label>
       <div className="relative mt-2 rounded-md shadow-sm">
         {currencySign && <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">

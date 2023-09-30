@@ -12,7 +12,7 @@ const Button = ({ content, className, style, disabled, variant = 'info', to = ''
   return <button
     disabled={disabled}
     style={style}
-    className={`py-1 px-3 rounded-sm ${buttonColor} ${className}`}
+    className={`py-1 px-3 rounded-md ${buttonColor} ${className || ''}`}
     >
       {to ? (
         <Link href={to}>{content}</Link>
