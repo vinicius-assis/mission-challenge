@@ -9,8 +9,8 @@ const CardList = () => {
     return <EmptyListMessage content="Carrinho vazio." />
   }
 
-  const increaseProductQuantity = (item: any) => dispatch({ type: 'ADD_CART', payload: item })
-  const decreaseProductQuantity = (item: any) => dispatch({ type: 'REMOVE_ITEM', payload: item })
+  const increaseProductQuantity = (item: IProductData) => dispatch({ type: 'ADD_CART', payload: item })
+  const decreaseProductQuantity = (item: IProductData) => dispatch({ type: 'REMOVE_ITEM', payload: item })
 
 
   return (

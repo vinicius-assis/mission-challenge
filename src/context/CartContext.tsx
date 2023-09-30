@@ -1,12 +1,10 @@
 import { createContext, useReducer } from "react";
 
-interface IProvider {
-  children: React.ReactNode
-}
 
-const INITIAL_STATE: any = []
 
-const productReducer = (state: Array<any>, action: any) => {
+const INITIAL_STATE: IProductList = []
+
+const cartReducer = (state: IProductList, action: ICartReducerAction) => {
   const currentId = action?.payload?.id
   const itemIndex = state?.findIndex(({ id }) => currentId === id)
 
@@ -14,14 +12,14 @@ const productReducer = (state: Array<any>, action: any) => {
   switch (action.type) {
     case 'ADD_CART':
       if (itemIndex >= 0) {
-        const updatedState = state.reduce((acc, item, index) => {
+        const updatedState = state.reduce((acc: IProductList, item, index) => {
           const { quantity } = item
           if (index === itemIndex) {
             return [
               ...acc,
               {
                 ...item,
-                quantity: quantity + 1
+                quantity: (quantity || 0) + 1
               }
             ]
           }
@@ -38,7 +36,7 @@ const productReducer = (state: Array<any>, action: any) => {
       ]
 
     case 'REMOVE_ITEM':
-      const updatedState = state.reduce((acc, item, index) => {
+      const updatedState = state.reduce((acc: IProductList, item, index) => {
         const { quantity } = item
         if (quantity === 1) {
           return acc
@@ -48,7 +46,7 @@ const productReducer = (state: Array<any>, action: any) => {
             ...acc,
             {
               ...item,
-              quantity: quantity - 1
+              quantity: (quantity || 1) - 1
             }
           ]
         }
@@ -65,7 +63,7 @@ const productReducer = (state: Array<any>, action: any) => {
 export const CartContext = createContext<any>(INITIAL_STATE)
 
 export const CartProvider: React.FC<IProvider> = ({ children }) => {
-  const [cartItems, dispatch] = useReducer(productReducer, INITIAL_STATE)
+  const [cartItems, dispatch] = useReducer(cartReducer, INITIAL_STATE)
   const totalItems = cartItems?.length
   return (
     <CartContext.Provider value={{ cartItems, dispatch, totalItems }}>

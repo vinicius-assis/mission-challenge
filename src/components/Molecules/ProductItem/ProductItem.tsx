@@ -10,7 +10,8 @@ const ProductItem = ({
   handleAddProduct,
   handleDescreaseProduct
 }:IProductItem) => {
-  const itemPrice = (quantity ? (Number(price) * quantity).toFixed(2) : price) as number
+  const formattedPrice = Number(price?.replaceAll('.', '')?.replaceAll(',', '.'))
+  const itemPrice = (quantity ? (formattedPrice * quantity).toFixed(2) : formattedPrice) as number
   return (
     <li className={`flex justify-between py-2 ${className}`}>
       <div className="flex">

@@ -1,12 +1,8 @@
 import { createContext, useReducer } from "react";
 
-interface IProvider {
-  children: React.ReactNode
-}
+const INITIAL_STATE: Array<IProductData> = []
 
-const INITIAL_STATE: any = []
-
-const productReducer = (state: any, action: any) => {
+const productReducer = (state: IProductList, action: IProductReducerAction) => {
   switch (action.type) {
     case 'REGISTER_PRODUCTS':
       return [

@@ -10,5 +10,9 @@ interface IProductInput {
   addProductField: (e: React.MouseEvent<HTMLElement>) => void
   removeField: (event: React.MouseEvent<HTMLElement>) => void
   disabledRemove?: boolean
-  handleChange: (field: 'name' | 'price', value: string) => void
+  handleChange: (field: string, value: string) => void
+}
+
+interface IRegisterInputGroup {
+  handleUpdateFields?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }

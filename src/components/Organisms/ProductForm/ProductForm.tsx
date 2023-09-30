@@ -12,7 +12,7 @@ const DEFAULT_FIELD = {
 }
 
 const ProductForm = () => {
-  const [products, setProducts] = useState([{ id: uuid(), ...DEFAULT_FIELD}])
+  const [products, setProducts] = useState<Array<IProductData>>([{ id: uuid(), ...DEFAULT_FIELD}])
   const { dispatch } = useContext(ProductContext)
 
   const [registerLoading, setRegisterLoading] = useState(false)
@@ -22,18 +22,18 @@ const ProductForm = () => {
 
   const handleAddProductField = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault()
-    setProducts((oldValue: any) => [...oldValue, { id: uuid(), ...DEFAULT_FIELD}])
+    setProducts((oldValue) => [...oldValue, { id: uuid(), ...DEFAULT_FIELD}])
   }
 
   const handleRemoveProductField = (itemIndex: number) => (event: React.MouseEvent<HTMLElement>) =>  {
     event.preventDefault()
-    setProducts((oldValue: any) => {
+    setProducts((oldValue) => {
       const filteredValues = oldValue.filter((_: unknown, index: number) => index !== itemIndex)
       return filteredValues
     })
   }
 
-  const handleUpdateFieldValue = (index: number) => (field: 'name' | 'price', value: string) => {
+  const handleUpdateFieldValue = (index: number) => (field: string, value: string) => {
     const newProducts = [...products]
     newProducts[index] = {
       ...products[index],

@@ -1,6 +1,6 @@
 import Input from "@/components/Atoms/Input/Input"
 
-const RegisterInputGroup = ({ handleUpdateFields }: any) => {
+const RegisterInputGroup = ({ handleUpdateFields }: IRegisterInputGroup) => {
   return (
     <>
       <Input name="product" label="Produto" onChange={handleUpdateFields} />
