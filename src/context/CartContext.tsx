@@ -7,15 +7,27 @@ interface IProvider {
 const INITIAL_STATE: any = []
 
 const productReducer = (state: Array<any>, action: any) => {
+  const currentId = action?.payload?.id
+  const itemIndex = state?.findIndex(({ id }) => currentId === id)
+
+
   switch (action.type) {
     case 'ADD_CART':
-      const currentId = action?.payload?.id
-      const duplicatedIndex = state.findIndex(({ id }) => id === currentId)
-      console.log(duplicatedIndex)
-      if (duplicatedIndex >= 0) {
-        state[duplicatedIndex].quantity++
-        console.log(state)
-        return state
+      if (itemIndex >= 0) {
+        const updatedState = state.reduce((acc, item, index) => {
+          const { quantity } = item
+          if (index === itemIndex) {
+            return [
+              ...acc,
+              {
+                ...item,
+                quantity: quantity + 1
+              }
+            ]
+          }
+          return acc
+        }, [])
+        return updatedState
       }
       return [
         ...state,
@@ -24,6 +36,27 @@ const productReducer = (state: Array<any>, action: any) => {
           quantity: 1
         }
       ]
+
+    case 'REMOVE_ITEM':
+      const updatedState = state.reduce((acc, item, index) => {
+        const { quantity } = item
+        if (quantity === 1) {
+          return acc
+        }
+        if (index === itemIndex) {
+          return [
+            ...acc,
+            {
+              ...item,
+              quantity: quantity - 1
+            }
+          ]
+        }
+        return acc
+      }, [])
+
+      return updatedState
+
     default:
       return state
   }
