@@ -1,3 +1,5 @@
+'use client'
+
 import ProductList from "@/components/Organisms/ProductList/ProductList";
 import { productItems } from "../../mock/productItems";
 
