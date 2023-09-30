@@ -11,9 +11,18 @@ const ProductList = ({ data }: IProductList) => {
     
   return (
     <ul className="p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
-      {data?.map(({ id, productName, price }: IProductData) => (
-        <ProductItem key={id} title={productName} price={price} />
-      ))}
+      {data?.map((product: IProductData, index: number) => {
+        const { id, productName, price } = product
+        const lastItem = data?.length === index + 1
+        return (
+          <ProductItem
+            key={id}
+            title={productName}
+            price={price}
+            {...(!lastItem ? { className: 'border-b-2 border-solid border-slate-500' } : {})}
+            />
+        )}
+      )}
     </ul>
   )
 }
