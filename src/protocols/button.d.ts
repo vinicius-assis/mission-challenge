@@ -1,4 +1,4 @@
-interface IButton  {
+interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement>  {
   content: string
   className?: string
   style?: React.CSSProperties
@@ -6,5 +6,4 @@ interface IButton  {
   variant?: 'success' | 'danger' | 'info'
   to?: string
   type?: 'button' | 'submit' | 'reset'
-  onClick?: React.MouseEventHandler<HTMLElement>
 }

@@ -3,4 +3,5 @@ interface IInput {
   label: string
   placeholder?: string
   currencySign?: string
+  onChange?: ChangeEvent<HTMLInputElement>
 }

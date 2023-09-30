@@ -14,7 +14,7 @@ const Button = ({
   type = 'button',
   variant = 'info',
   to = '',
-  onClick = undefined
+  onClick
 }: IButton) => {
   const buttonColor = colorSwitch[variant]
 
