@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useState } from "react"
 
 const colorSwitch = {
   success: 'bg-green-500 enabled:hover:bg-green-600',
@@ -15,15 +16,22 @@ const DefaultButton = ({
   variant = 'info',
   onClick
 }: IButton) => {
+  const [loadingButton, setLoadingButton] = useState(false)
   const buttonColor = colorSwitch[variant]
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setLoadingButton(true)
+    onClick && onClick(event)
+    setTimeout(() => setLoadingButton(false), 200)
+  }
 
   return (
     <button
     type={type}
-    disabled={disabled}
+    disabled={disabled || loadingButton}
     style={style}
     className={`py-1 px-3 rounded-md ${buttonColor}  disabled:opacity-50 ${className || ''}`}
-    onClick={onClick}
+    onClick={handleClick}
     >{content}</button>
 )}
 

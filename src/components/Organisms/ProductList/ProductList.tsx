@@ -5,16 +5,17 @@ import { CartContext } from "@/context/CartContext"
 
 import EmptyListMessage from "@/components/Atoms/EmptyListMessage/EmptyListMessage"
 import ProductItem from "@/components/Molecules/ProductItem/ProductItem"
+import { ProductContext } from "@/context/ProductContext"
 
 const ProductList = () => {
-  const { dispatch, products } = useContext(CartContext)
+  const { dispatch } = useContext(CartContext)
+  const { products } = useContext(ProductContext)
 
   const handleAddProduct = (item: IProductData) => dispatch({ type: 'ADD_CART', payload: item })
 
   if (!products?.length) {
     return <EmptyListMessage content="Nenhum item cadastrado." />
   }
-
     
   return (
     <ul className="p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
@@ -24,6 +25,7 @@ const ProductList = () => {
         return (
           <ProductItem
             key={id}
+            id={id}
             title={productName}
             price={price}
             handleAddProduct={() => handleAddProduct(item)}

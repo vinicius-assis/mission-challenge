@@ -1,4 +1,5 @@
 interface IProductItem {
+  id?: string
   title: string
   price: string
   className?: string

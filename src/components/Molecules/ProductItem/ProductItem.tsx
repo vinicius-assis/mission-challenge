@@ -3,6 +3,7 @@ import ProductControl from "../ProductControl/ProductControl"
 import { formatCurrencyToString } from "@/utils/formatCurrency"
 
 const ProductItem = ({
+  id,
   title,
   price,
   quantity,
@@ -21,6 +22,7 @@ const ProductItem = ({
         <h4 className="text-base font-semibold">{title}</h4>
       </div>
         <ProductControl
+          id={id}
           price={itemPrice}
           hiddenRemoveButton={hiddenRemoveButton}
           handleAddProduct={handleAddProduct}
