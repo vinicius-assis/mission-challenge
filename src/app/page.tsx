@@ -8,8 +8,8 @@ export default function Home() {
   const { products } = useContext(ProductContext)
 
   return (
-    <main>
-      <ProductList data={products} />
+    <main className="container mx-auto">
+      <ProductList products={products} />
     </main>
   )
 }

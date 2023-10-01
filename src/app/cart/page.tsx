@@ -5,7 +5,7 @@ import CardList from "@/components/Organisms/CardList/CardList"
 export default function CartPage() {
 
   return (
-    <main>
+    <main className="container mx-auto">
       <CardList />
     </main>
   )
