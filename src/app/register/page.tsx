@@ -1,5 +1,3 @@
-'use client'
-
 import ProductForm from "@/components/Organisms/ProductForm/ProductForm"
 
 export default function Register() {
