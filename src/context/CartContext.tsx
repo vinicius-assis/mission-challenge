@@ -1,3 +1,4 @@
+import { formatCurrencyToString } from "@/utils/formatCurrency";
 import { updateQuantity } from "@/utils/updateQuantity";
 import { createContext, useReducer } from "react";
 
@@ -46,9 +47,22 @@ export const CartContext = createContext<any>(INITIAL_STATE)
 
 export const CartProvider: React.FC<IProvider> = ({ children }) => {
   const [cartItems, dispatch] = useReducer(cartReducer, INITIAL_STATE)
+
   const totalItems = cartItems?.length
+  const getCartTotal = () => {
+    const cartTotalValue = cartItems?.reduce((acc, item) => {
+    const { quantity, price } = item
+    const priceToNumber = Number(price?.replaceAll('.', '')?.replaceAll(',', '.'))
+    const totalItemPrice = priceToNumber * (quantity || 1)
+    return acc + totalItemPrice
+    }, 0)
+
+    return formatCurrencyToString(String(cartTotalValue))
+  }
+
+
   return (
-    <CartContext.Provider value={{ cartItems, dispatch, totalItems }}>
+    <CartContext.Provider value={{ cartItems, dispatch, totalItems, totalCart: getCartTotal() }}>
       {children}
     </CartContext.Provider>
   )

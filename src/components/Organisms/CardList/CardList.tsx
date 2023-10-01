@@ -1,10 +1,11 @@
 import EmptyListMessage from "@/components/Atoms/EmptyListMessage/EmptyListMessage"
+import TotalCartDisplay from "@/components/Atoms/TotalCartDisplay/TotalCartDisplay"
 import ProductItem from "@/components/Molecules/ProductItem/ProductItem"
 import { CartContext } from "@/context/CartContext"
 import { useContext } from "react"
 
 const CardList = () => {
-  const { cartItems, dispatch } = useContext(CartContext)
+  const { cartItems, dispatch, totalCart } = useContext(CartContext)
   if (!cartItems?.length) {
     return <EmptyListMessage content="Carrinho vazio." />
   }
@@ -17,20 +18,22 @@ const CardList = () => {
     <ul className="p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
       {cartItems?.map((product: IProductData, index: number, array: Array<IProductData>) => {
         const { id, product: productName, quantity, price } = product
-        const lastItem = array?.length === index + 1
 
         return (
-          <ProductItem
-            key={id}
-            title={productName}
-            price={price}
-            quantity={quantity}
-            handleAddProduct={() => increaseProductQuantity(product)}
-            handleDescreaseProduct={() => decreaseProductQuantity(product)}
-            {...(!lastItem ? { className: 'border-b-2 border-solid border-slate-500' } : {})}
-            />
+          <>
+            <ProductItem
+              key={id}
+              title={productName}
+              price={price}
+              quantity={quantity}
+              handleAddProduct={() => increaseProductQuantity(product)}
+              handleDescreaseProduct={() => decreaseProductQuantity(product)}
+              className="border-b-2 border-solid border-slate-500"
+              />
+          </>
         )}
       )}
+      <TotalCartDisplay content={totalCart} />
     </ul>
   )
 }
