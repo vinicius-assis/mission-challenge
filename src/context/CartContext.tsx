@@ -1,7 +1,5 @@
 import { createContext, useReducer } from "react";
 
-
-
 const INITIAL_STATE: IProductList = []
 
 const cartReducer = (state: IProductList, action: ICartReducerAction) => {
@@ -12,9 +10,9 @@ const cartReducer = (state: IProductList, action: ICartReducerAction) => {
   switch (action.type) {
     case 'ADD_CART':
       if (itemIndex >= 0) {
-        const updatedState = state.reduce((acc: IProductList, item, index) => {
-          const { quantity } = item
-          if (index === itemIndex) {
+        const updatedState = state.reduce((acc: IProductList, item) => {
+          const { quantity, id } = item
+          if (currentId === id) {
             return [
               ...acc,
               {
@@ -23,10 +21,14 @@ const cartReducer = (state: IProductList, action: ICartReducerAction) => {
               }
             ]
           }
-          return acc
+          return [
+            ...acc,
+            item
+          ]
         }, [])
         return updatedState
       }
+
       return [
         ...state,
         {
@@ -36,12 +38,12 @@ const cartReducer = (state: IProductList, action: ICartReducerAction) => {
       ]
 
     case 'REMOVE_ITEM':
-      const updatedState = state.reduce((acc: IProductList, item, index) => {
-        const { quantity } = item
-        if (quantity === 1) {
-          return acc
-        }
-        if (index === itemIndex) {
+      const updatedState = state.reduce((acc: IProductList, item) => {
+        const { quantity, id } = item
+        if (currentId === id) {
+          if (quantity === 1) {
+            return acc
+          }
           return [
             ...acc,
             {
@@ -50,7 +52,10 @@ const cartReducer = (state: IProductList, action: ICartReducerAction) => {
             }
           ]
         }
-        return acc
+        return [
+          ...acc,
+          item
+        ]
       }, [])
 
       return updatedState
