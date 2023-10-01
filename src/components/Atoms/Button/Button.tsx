@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { useState } from "react"
+import { memo, useState } from "react"
 
 const colorSwitch = {
   success: 'bg-green-500 enabled:hover:bg-green-600',
@@ -50,4 +50,4 @@ const Button = ({
     )
 }
 
-export default Button
+export default memo(Button)

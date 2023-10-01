@@ -5,8 +5,8 @@ interface IProvider {
 type IProductList = Array<IProductData>
 
 interface ICartReducerAction {
-  type: 'ADD_CART' | 'REMOVE_ITEM'
-  payload: IProductData
+  type: 'ADD_CART' | 'REMOVE_ITEM' | 'GET_INITIAL_VALUE'
+  payload: any
 }
 
 interface IProductReducerAction {

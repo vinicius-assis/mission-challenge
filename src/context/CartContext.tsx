@@ -1,5 +1,4 @@
 import { getCartCookies, getProductListCookies, setCartCookies } from "@/app/actions";
-import { formatCurrencyToString } from "@/utils/formatCurrency";
 import { updateQuantity } from "@/utils/updateQuantity";
 import { createContext, useEffect, useMemo, useReducer } from "react";
 
@@ -13,6 +12,11 @@ const cartReducer = (state: IProductList, action: ICartReducerAction) => {
 
 
   switch (action.type) {
+    case 'GET_INITIAL_VALUE':
+      if (Array.isArray(payload)) {
+        return [ ...payload ]
+      }
+      return [payload]
     case 'ADD_CART':
       if (itemIndex >= 0) {
         const data = updateQuantity(state, currentId, 'plus')
@@ -49,6 +53,20 @@ export const CartProvider: React.FC<IProvider> = ({ children }) => {
   const [cartItems, dispatch] = useReducer(cartReducer, INITIAL_STATE)
 
   const totalItems = useMemo(() => cartItems?.length, [cartItems])
+
+  const handleDefaultState = (value: IProductList) => dispatch({ type: 'GET_INITIAL_VALUE', payload: value })
+
+  useEffect(() => {
+    if (!cartItems?.length) {
+      const getDefaultValue = async() => {
+        const cookies = await getCartCookies()
+        if (cookies?.length) {
+          handleDefaultState(cookies)
+        }
+      }
+      getDefaultValue()
+    }
+  }, [])
 
   return (
     <CartContext.Provider value={{ cartItems, dispatch, totalItems }}>
