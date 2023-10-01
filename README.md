@@ -8,6 +8,6 @@
 - [x] Criar um repositório no Github
 - [x] Realizar pelo menos 3 commits
 - [x] A aplicação deve ser feita em Next ~13
-- [ ] Utilizar App Router
-- [ ] Disponibilizar no Vercel
-- [ ] Finalizar em até 5 dias
+- [x] Utilizar App Router
+- [x] Disponibilizar no Vercel
+- [x] Finalizar em até 5 dias
