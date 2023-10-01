@@ -1,8 +1,8 @@
 import { formatCurrencyToString } from "@/utils/formatCurrency";
 import { updateQuantity } from "@/utils/updateQuantity";
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
-const sessionList = sessionStorage.getItem('cartList') || undefined
+const sessionList =  window ? sessionStorage.getItem('cartList') : undefined
   const defaultList = sessionList ? JSON.parse(sessionList) : []
 
 const INITIAL_STATE: IProductList = defaultList

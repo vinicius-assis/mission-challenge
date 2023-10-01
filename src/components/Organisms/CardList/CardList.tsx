@@ -16,21 +16,19 @@ const CardList = () => {
 
   return (
     <ul className="p-2 mx-4 border-2 rounded-sm border-solid border-slate-500">
-      {cartItems?.map((product: IProductData, index: number, array: Array<IProductData>) => {
+      {cartItems?.map((product: IProductData) => {
         const { id, product: productName, quantity, price } = product
 
         return (
-          <>
-            <ProductItem
-              key={id}
-              title={productName}
-              price={price}
-              quantity={quantity}
-              handleAddProduct={() => increaseProductQuantity(product)}
-              handleDescreaseProduct={() => decreaseProductQuantity(product)}
-              className="border-b-2 border-solid border-slate-500"
-              />
-          </>
+          <ProductItem
+            key={id}
+            title={productName}
+            price={price}
+            quantity={quantity}
+            handleAddProduct={() => increaseProductQuantity(product)}
+            handleDescreaseProduct={() => decreaseProductQuantity(product)}
+            className="border-b-2 border-solid border-slate-500"
+            />
         )}
       )}
       <TotalCartDisplay content={totalCart} />

@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-  const sessionList = sessionStorage.getItem('productList') || undefined
+  const sessionList = window ? sessionStorage.getItem('productList') : undefined
   const defaultList = sessionList ? JSON.parse(sessionList) : []
 
 const INITIAL_STATE: Array<IProductData> = defaultList
