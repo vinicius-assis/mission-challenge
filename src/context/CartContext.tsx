@@ -1,6 +1,10 @@
+import { updateQuantity } from "@/utils/updateQuantity";
 import { createContext, useReducer } from "react";
 
-const INITIAL_STATE: IProductList = []
+const sessionList = sessionStorage.getItem('cartList') || undefined
+  const defaultList = sessionList ? JSON.parse(sessionList) : []
+
+const INITIAL_STATE: IProductList = defaultList
 
 const cartReducer = (state: IProductList, action: ICartReducerAction) => {
   const currentId = action?.payload?.id
@@ -10,55 +14,28 @@ const cartReducer = (state: IProductList, action: ICartReducerAction) => {
   switch (action.type) {
     case 'ADD_CART':
       if (itemIndex >= 0) {
-        const updatedState = state.reduce((acc: IProductList, item) => {
-          const { quantity, id } = item
-          if (currentId === id) {
-            return [
-              ...acc,
-              {
-                ...item,
-                quantity: (quantity || 0) + 1
-              }
-            ]
-          }
-          return [
-            ...acc,
-            item
-          ]
-        }, [])
-        return updatedState
+        const data = updateQuantity(state, currentId, 'plus')
+        sessionStorage.setItem('cartList', JSON.stringify(data))
+
+        return data
       }
 
-      return [
+      const list = [
         ...state,
         {
           ...action.payload,
           quantity: 1
         }
       ]
+      sessionStorage.setItem('cartList', JSON.stringify(list))
+
+      return list
 
     case 'REMOVE_ITEM':
-      const updatedState = state.reduce((acc: IProductList, item) => {
-        const { quantity, id } = item
-        if (currentId === id) {
-          if (quantity === 1) {
-            return acc
-          }
-          return [
-            ...acc,
-            {
-              ...item,
-              quantity: (quantity || 1) - 1
-            }
-          ]
-        }
-        return [
-          ...acc,
-          item
-        ]
-      }, [])
+      const data = updateQuantity(state, currentId, 'minus')
+      sessionStorage.setItem('cartList', JSON.stringify(data))
 
-      return updatedState
+      return data
 
     default:
       return state
