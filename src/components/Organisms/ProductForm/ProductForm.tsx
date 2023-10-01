@@ -79,6 +79,7 @@ const ProductForm = () => {
           removeField={handleRemoveProductField(index)}
           disabledRemove={array.length === 1}
           handleChange={handleUpdateFieldValue(index)}
+          noLabels={index !== 0}
         />
       ))}
       <div className="flex justify-end">

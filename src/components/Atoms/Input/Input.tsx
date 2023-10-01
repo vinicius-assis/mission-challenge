@@ -6,6 +6,7 @@ const Input = ({
   label,
   placeholder = 'Insira o nome do Produto',
   currencySign,
+  noLabels,
   onChange = undefined
 }: IInput) => {
   const [inputValue, setInputValue] = useState('')
@@ -18,7 +19,7 @@ const Input = ({
 
   return (
     <div className="w-full">
-      <label htmlFor={name} className="block text-sm font-medium leading-6 text-white">{label}</label>
+      {!noLabels && <label htmlFor={name} className="block text-sm font-medium leading-6 text-white">{label}</label>}
       <div className="relative mt-2 rounded-md shadow-sm">
         {currencySign && <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <span className="text-gray-500 sm:text-sm">{currencySign}</span>
