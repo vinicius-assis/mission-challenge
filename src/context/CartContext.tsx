@@ -13,9 +13,6 @@ const cartReducer = (state: IProductList, action: ICartReducerAction) => {
 
 
   switch (action.type) {
-    case 'GET_INITIAL_VALUES':
-      const payload = action?.payload as IProductList
-      return payload
     case 'ADD_CART':
       if (itemIndex >= 0) {
         const data = updateQuantity(state, currentId, 'plus')

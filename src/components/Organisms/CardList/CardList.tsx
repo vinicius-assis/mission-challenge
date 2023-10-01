@@ -1,3 +1,5 @@
+'use client'
+
 import EmptyListMessage from "@/components/Atoms/EmptyListMessage/EmptyListMessage"
 import TotalCartDisplay from "@/components/Atoms/TotalCartDisplay/TotalCartDisplay"
 import ProductItem from "@/components/Molecules/ProductItem/ProductItem"
@@ -5,13 +7,9 @@ import { CartContext } from "@/context/CartContext"
 import { getTotalCart } from "@/utils/getTotalCart"
 import { useContext, useMemo } from "react"
 
-interface ICardListProps {
-  cartItems: IProductList
-}
 
-
-const CardList = ({ cartItems }: ICardListProps) => {
-  const { dispatch } = useContext(CartContext)
+const CardList = () => {
+  const { dispatch, cartItems } = useContext(CartContext)
 
   const increaseProductQuantity = (item: IProductData) => dispatch({ type: 'ADD_CART', payload: item })
   const decreaseProductQuantity = (item: IProductData) => dispatch({ type: 'REMOVE_ITEM', payload: item })

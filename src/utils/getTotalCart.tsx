@@ -10,5 +10,5 @@ export const getTotalCart = (cartItems: IProductList): string => {
     const totalItemPrice = priceToNumber * (quantity || 1)
     return acc + totalItemPrice
   }, 0)
-  return formatCurrencyToString(String(total))
+  return formatCurrencyToString(String(total.toFixed(2)))
 }

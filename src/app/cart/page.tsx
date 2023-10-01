@@ -1,4 +1,3 @@
-'use client'
 
 import CardList from "@/components/Organisms/CardList/CardList"
 
