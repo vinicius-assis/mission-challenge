@@ -6,29 +6,40 @@ const colorSwitch = {
   info: 'bg-blue-500 enabled:hover:bg-blue-600'
 }
 
-const Button = ({
+const DefaultButton = ({
   content,
   className,
   style,
   disabled,
   type = 'button',
   variant = 'info',
-  to = '',
   onClick
 }: IButton) => {
   const buttonColor = colorSwitch[variant]
 
-  return <button
+  return (
+    <button
     type={type}
     disabled={disabled}
     style={style}
     className={`py-1 px-3 rounded-md ${buttonColor}  disabled:opacity-50 ${className || ''}`}
     onClick={onClick}
-    >
-      {to ? (
-        <Link href={to}>{content}</Link>
-      ) : content}
-    </button>
+    >{content}</button>
+)}
+
+const Button = ({
+  to,
+  ...props
+}: IButton) => {
+
+  return to
+    ? (
+      <Link href={to}>
+        <DefaultButton {...props} /> 
+      </Link>
+    ) : (
+      <DefaultButton {...props} />
+    )
 }
 
 export default Button
