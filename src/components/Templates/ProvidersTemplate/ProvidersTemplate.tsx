@@ -7,14 +7,12 @@ const ProvidersTemplate: React.FC<{
   children: React.ReactNode
 }> = ({ children }) => {
   return (
-    <>
-      <ProductProvider>
-        <CartProvider>
-          <Navbar />
-          {children}
-        </CartProvider>
-      </ProductProvider>
-    </>
+    <ProductProvider>
+      <CartProvider>
+        <Navbar />
+        {children}
+      </CartProvider>
+    </ProductProvider>
   )
 }
 
