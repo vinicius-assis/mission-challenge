@@ -1,5 +1,5 @@
 interface IProductControl {
-  price: number
+  price: string
   disabledRemove?: boolean
   hiddenRemoveButton?: boolean
   handleAddProduct?: () => void

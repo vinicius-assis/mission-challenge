@@ -8,6 +8,7 @@ const INITIAL_STATE: Array<IProductData> = defaultList
 const productReducer = (state: IProductList, action: IProductReducerAction) => {
   switch (action.type) {
     case 'REGISTER_PRODUCTS':
+      console.log(action.payload)
       const list = [
         ...state,
         ...action.payload

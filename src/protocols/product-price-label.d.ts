@@ -1,5 +1,5 @@
 interface IProductPriceLabel {
-  price: number
+  price: string
   minWith?: string
   className?: string
 }

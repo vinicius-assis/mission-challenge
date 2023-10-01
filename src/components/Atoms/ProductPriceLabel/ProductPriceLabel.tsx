@@ -1,3 +1,5 @@
+import { formatCurrencyToString } from "@/utils/formatCurrency"
+
 const DEFAULT_STYLE = 'mr-1 py-1 px-3 rounded-sm bg-gray-300 text-black text-sm font-medium text-right'
 
 const ProductPriceLabel = ({ price, minWith = '80px', className = '' }: IProductPriceLabel) => {
@@ -6,7 +8,7 @@ const ProductPriceLabel = ({ price, minWith = '80px', className = '' }: IProduct
       style={{ minWidth: minWith}}
       className={`${DEFAULT_STYLE} ${className}`}
     >
-      {`R$${price}`}
+      {`R$${formatCurrencyToString(price)}`}
     </p>
   )
 }

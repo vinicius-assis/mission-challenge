@@ -1,5 +1,6 @@
 import { memo } from "react"
 import ProductControl from "../ProductControl/ProductControl"
+import { formatCurrencyToString } from "@/utils/formatCurrency"
 
 const ProductItem = ({
   title,
@@ -11,7 +12,8 @@ const ProductItem = ({
   handleDescreaseProduct
 }:IProductItem) => {
   const formattedPrice = Number(price?.replaceAll('.', '')?.replaceAll(',', '.'))
-  const itemPrice = (quantity ? (formattedPrice * quantity).toFixed(2) : formattedPrice) as number
+  const totalPrice = quantity ? (formattedPrice * quantity).toFixed(2) : price
+  const itemPrice = formatCurrencyToString(String(totalPrice))
   return (
     <li className={`flex justify-between py-2 ${className}`}>
       <div className="flex">

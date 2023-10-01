@@ -14,5 +14,5 @@ interface IProductInput {
 }
 
 interface IRegisterInputGroup {
-  handleUpdateFields?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleUpdateFields: (name: string) =>  (value: string) => void
 }

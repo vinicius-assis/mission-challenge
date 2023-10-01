@@ -4,9 +4,7 @@ import Button from "@/components/Atoms/Button/Button"
 import RegisterInputGroup from "../RegisterInputGroup/RegisterInputGroup"
 
 const ProductInput = ({ addProductField, disabledRemove, removeField, handleChange }: IProductInput) => {
-  const handleUpdateFields = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = event
-    const { name, value } = target
+  const handleUpdateFields = (name: string) =>  (value: string) => {
     handleChange(name, value)
   }
 

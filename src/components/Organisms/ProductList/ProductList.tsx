@@ -4,7 +4,11 @@ import { CartContext } from "@/context/CartContext"
 import EmptyListMessage from "@/components/Atoms/EmptyListMessage/EmptyListMessage"
 import ProductItem from "@/components/Molecules/ProductItem/ProductItem"
 
-const ProductList = ({ data }: IProductList) => {
+interface IProductListProps {
+  data: IProductList
+}
+
+const ProductList = ({ data }: IProductListProps) => {
   const { dispatch } = useContext(CartContext)
 
   const handleAddProduct = (item: IProductData) => dispatch({ type: 'ADD_CART', payload: item })
